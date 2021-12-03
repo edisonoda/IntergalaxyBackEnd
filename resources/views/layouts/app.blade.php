@@ -55,6 +55,26 @@
                         </template>
                         <v-list>
                             <v-list-item>
+                                <!--
+                                <v-btn
+                                    href="/profile/{id}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('profile-form').submit();">
+                                    Perfil
+                                </v-btn>
+                                <form id="profile-form" action="/profile/{id}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                <v-btn
+                                    href="/profile/{id}/edit"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('edit-profile-form').submit();">
+                                    Editar Dados
+                                </v-btn>
+                                <form id="edit-profile-form" action="/profile/{id}/edit" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                                -->
                                 <v-btn
                                     text
                                     href="{{ route('logout') }}"

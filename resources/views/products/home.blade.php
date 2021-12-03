@@ -28,11 +28,12 @@
                         </v-card-subtitle>
 
                         <v-card-text>
-                            <div>{{$product->description}}</div>
+                            <div class="text-truncate">{{$product->description}}</div>
                         </v-card-text>
                     </v-card>
                 </v-col>
             @endforeach
+            {{$products->links()}}
         @else
             <p>Ainda não existem produtos cadastrados.</p>
         @endif
