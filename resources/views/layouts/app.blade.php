@@ -11,15 +11,19 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .brMoney::before {
+            content:"R$";
+        }
+    </style>
 </head>
 <body>
     <div id='app'>
         <v-app>
-            <v-navigation-drawer app>
-            <!-- -->
-            </v-navigation-drawer>
-        
-            <v-app-bar app>
+            <v-app-bar dark app>
                 <v-btn text href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </v-btn>
@@ -42,9 +46,7 @@
                     <v-menu offset-y>
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
-                                color="indigo"
                                 outlined
-                                dark
                                 v-bind="attrs"
                                 v-on="on"
                             >

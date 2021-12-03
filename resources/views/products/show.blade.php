@@ -1,15 +1,30 @@
 @extends('layouts.app')
 
-<script src="{{ asset('js/currencyFormat.js') }}"></script>
-
 @section('content')
-<div>
-    @if($post->image_path)
-        <img src="{{$post->image_path}}" alt="{{$post->title}}">
-    @endif
+<v-card
+    class="mx-auto"
+    max-width="250"
+    dark
+    href="/products/{{$product->id}}"
+    hover
+    height="400">
 
-    <h1>{{$post->title}}</h1>
-    <small>{{$post->created_at}}</small>
-    <script>numberToCurrency($post->price)</script>
-</div>
+    <v-img
+    alt="`{{$product->title}}`"
+    src="{{$product->image_path}}"
+    max-height="200"
+    ></v-img>
+
+    <v-card-title class="text-h6">
+        {{$product->title}}
+    </v-card-title>
+
+    <v-card-text>
+        <div class="brMoney">{{$product->price}}</div>
+    </v-card-text>
+
+    <v-card-text>
+        <div>{{$product->description}}</div>
+    </v-card-text>
+</v-card>
 @endsection
