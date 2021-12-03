@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class PagesController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,13 +21,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
-    }
 
-    public function adminHome()
-    {
-        return view('adminHome');
+    public function index(){
+        if (auth()->user()->is_admin) {
+            return view('pages.adminHome');
+        }else{
+            return view('pages.home');
+        }
     }
 }
