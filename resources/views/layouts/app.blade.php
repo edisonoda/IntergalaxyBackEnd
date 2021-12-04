@@ -23,7 +23,15 @@
 <body>
     <div id='app'>
         <v-app>
-            @include('inc.navbar')
+            @guest
+                @include('inc.userNavbar')
+            @else
+                @if(Auth::user()->is_admin)
+                    @include('inc.adminNavbar')
+                @else
+                    @include('inc.userNavbar')
+                @endif
+            @endguest
         
             <!-- Sizes your content based upon application components -->
             <v-main>

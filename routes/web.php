@@ -20,3 +20,4 @@ Route::get('/', [App\Http\Controllers\ProductsController::class, 'index'])->name
 Route::get('admin', [App\Http\Controllers\ProductsController::class, 'index'])->name('admin.home')->middleware('is_admin');
 
 Route::resource('products', 'App\Http\Controllers\ProductsController');
+Route::resource('{user}/orders', 'App\Http\Controllers\OrdersController');
