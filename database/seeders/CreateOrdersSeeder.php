@@ -17,49 +17,49 @@ class CreateOrdersSeeder extends Seeder
         $order = [
             [
                'status'=> 'Em espera',
-               'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+               'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Cancelado',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Em espera',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Aprovado',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Em espera',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Em espera',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Cancelado',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Em espera',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
             [
                 'status'=> 'Aprovado',
-                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id'),
+                'user_id'=> \App\Models\User::inRandomOrder()->take(1)->pluck('id')[0],
             ],
         ];
   
         foreach ($order as $key => $value) {
-            Product::create($value);
+            Order::create($value);
         }
 
         foreach(Order::all() as $order){
             $products = \App\Models\Product::inRandomOrder()->take(rand(1,5))->pluck('id');
-            $order->products()->attach($product);
+            $order->products()->attach($products);
         }
     }
 }
