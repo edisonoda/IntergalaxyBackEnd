@@ -21,3 +21,7 @@ Route::get('admin', [App\Http\Controllers\ProductsController::class, 'index'])->
 
 Route::resource('products', 'App\Http\Controllers\ProductsController');
 Route::resource('{user}/orders', 'App\Http\Controllers\OrdersController');
+
+Route::get('/profile/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('profile');
+Route::get('/profile/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('profile.edit');
+Route::put('/profile/{user}/edit', [App\Http\Controllers\UserController::class, 'update'])->name('profile.update');

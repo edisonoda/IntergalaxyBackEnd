@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="text-h5 m-3" style="word-break: break-word">Editar pedido</div>
+<div class="text-h5 mt-3 text-center" style="word-break: break-word">Editar pedido</div>
 
 <div class="container">
     <div class="row justify-content-center">
