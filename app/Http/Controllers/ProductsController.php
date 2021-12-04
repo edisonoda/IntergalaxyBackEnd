@@ -19,7 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('price', 'asc')->paginate(5);
+        $products = Product::all();
 
         if (auth()->user()->is_admin) {
             return view('products.index')->with('products', $products);
@@ -35,7 +35,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -46,7 +46,21 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'description' => 'required',
+            'image_path' => 'required',
+        ]);
+
+        $product = new Product;
+        $product->title = $request->input('title');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');
+        $product->image_path = $request->input('image_path');
+        $product->save();
+        
+        return redirect('/')->with('success', 'Produto criado com sucesso!');
     }
 
     /**

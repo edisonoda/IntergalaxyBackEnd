@@ -12,14 +12,15 @@
             max-height="500"></v-img>
         </v-col>
         
-        <v-col align-self="end">
+        <v-col align-self="end" class="m-3">
             <v-card-title
-                class="text-h2 text-wrap"
+                class="text-h2"
+                style="word-break: break-word"
             >{{$product->title}}</v-card-title>
 
             <v-card-text class="brMoney text-h5">{{$product->price}}</v-card-text>
 
-            <v-card-text class="text-h6">
+            <v-card-text class="text-h6" style="word-break: break-word">
                 {{$product->description}}
             </v-card-text>
 

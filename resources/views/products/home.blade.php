@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <v-container>
     <v-row justify="center" dense>
         @if(count($products) > 1)
@@ -19,7 +20,8 @@
                         max-height="200"
                         ></v-img>
 
-                        <v-card-title class="text-h6">
+                        <v-card-title class="text-h6"
+                        style="word-break: break-word">
                             {{$product->title}}
                         </v-card-title>
 
@@ -28,12 +30,12 @@
                         </v-card-subtitle>
 
                         <v-card-text>
-                            <div class="text-truncate">{{$product->description}}</div>
+                            <!-- class="text-truncate" -->
+                            <div style="word-break: break-word">{{$product->description}}</div>
                         </v-card-text>
                     </v-card>
                 </v-col>
             @endforeach
-            {{$products->links()}}
         @else
             <p>Ainda não existem produtos cadastrados.</p>
         @endif
