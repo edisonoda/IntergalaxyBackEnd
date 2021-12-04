@@ -26,7 +26,7 @@
 
                     <v-spacer></v-spacer>
 
-                    <v-btn color="primary" href="{{ route('products.index') }}">Editar</v-btn>
+                    <v-btn color="primary" href="{{ route('admin.home') }}">Editar</v-btn>
                 </v-toolbar>
             </v-card>
         @endforeach

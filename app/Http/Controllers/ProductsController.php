@@ -22,7 +22,7 @@ class ProductsController extends Controller
         $products = Product::all();
 
         if (auth()->user()->is_admin) {
-            return view('products.index')->with('products', $products);
+            return view('products.admin')->with('products', $products);
         }else{
             return view('products.home')->with('products', $products);
         }
