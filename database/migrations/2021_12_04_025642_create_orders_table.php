@@ -17,6 +17,9 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->decimal('total_price', $precision = 10, $scale = 2);
             $table->enum('status', ['Cancelado', 'Em espera', 'Aprovado']);
+
+            $table->foreignId('user_id')->constrained('users');
+
             $table->timestamps();
         });
     }
