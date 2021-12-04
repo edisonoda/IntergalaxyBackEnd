@@ -57,13 +57,11 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'total_price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'status' => 'required',
             'user_id' => 'required',
         ]);
 
         $order = new Order;
-        $order->total_price = $request->input('total_price');
         $order->status = $request->input('status');
         $order->user_id = auth()->user()->id;
         $order->save();
@@ -105,12 +103,10 @@ class OrdersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'total_price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'status' => 'required',
         ]);
 
         $order = Order::find($id);
-        $order->total_price = $request->input('total_price');
         $order->status = $request->input('status');
         $order->save();
         
