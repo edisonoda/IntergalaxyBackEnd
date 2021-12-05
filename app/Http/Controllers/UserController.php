@@ -53,4 +53,14 @@ class UserController extends Controller
         
         return redirect('/')->with('success', 'Dados atualizados com sucesso!');
     }
+
+    /*
+    public function addToCart(Request $request, $id){
+        $user = User:find($id);
+
+        $this->validate($request, [
+            
+        ]);
+    }
+    */
 }

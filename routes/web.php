@@ -20,17 +20,15 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\ProductsController::class, 'index'])->name('home');
 Route::get('admin', [App\Http\Controllers\ProductsController::class, 'index'])->name('admin.home')->middleware('is_admin');
 
-// Products and orders routes
+// CRUD routes
 Route::resource('products', 'App\Http\Controllers\ProductsController');
 Route::resource('{user}/orders', 'App\Http\Controllers\OrdersController');
+Route::resource('{user}/cart', 'App\Http\Controllers\CartController');
 
 // Profile routes
 Route::get('/profile/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('profile');
 Route::get('/profile/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('profile.edit');
 Route::put('/profile/{user}/edit', [App\Http\Controllers\UserController::class, 'update'])->name('profile.update');
-
-// Cart route
-Route::get('{user}/cart', [App\Http\Controllers\CartController::class, 'index'])->name('cart');
 
 // Order routes
 //Route::get('{user}/orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders.index');

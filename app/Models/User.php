@@ -46,4 +46,10 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany('App\Order');
     }
+
+    public function products(){
+        return $this->belongsToMany(Product::class)
+        ->withTimestamps()
+        ->withPivot(['product_quantity']);
+    }
 }

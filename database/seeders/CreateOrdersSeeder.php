@@ -59,7 +59,9 @@ class CreateOrdersSeeder extends Seeder
 
         foreach(Order::all() as $order){
             $products = \App\Models\Product::inRandomOrder()->take(rand(1,5))->pluck('id');
-            $order->products()->attach($products);
+            foreach ($products as $product){
+                $order->products()->attach($product, ['product_quantity' => rand(0,15)]);
+            }
         }
     }
 }
