@@ -8,13 +8,13 @@
     @guest
         @if (Route::has('login'))
             <v-btn text href="{{ route('login') }}">
-                {{ __('Login') }}
+                Login
             </v-btn>
         @endif
 
         @if (Route::has('register'))
             <v-btn text href="{{ route('register') }}">
-                {{ __('Register') }}
+                Registrar
             </v-btn>
         @endif
     @else

@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue').default;
 
+import Vue from 'vue';
 import vuetify from './vuetify';
 
 /**
@@ -22,6 +23,7 @@ import vuetify from './vuetify';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('input-increment', require('./components/InputIncrement.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -33,5 +35,8 @@ window.addEventListener('load', function () {
     const app = new Vue({
         el: '#app',
         vuetify,
-    });
+        data:{
+            quantity: 1
+        }
+    })
 })
