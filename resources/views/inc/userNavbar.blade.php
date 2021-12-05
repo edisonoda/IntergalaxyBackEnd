@@ -28,10 +28,13 @@
                     {{ Auth::user()->name }}
                 </v-btn>
             </template>
-            <v-list>
+            <v-list dense>
                 <v-list-item>
                     <v-btn class="mx-auto" text color="primary" href="/profile/{{ Auth::user()->id }}/edit">Editar Dados</v-btn>
                 </v-list-item>
+
+                <v-divider></v-divider>
+
                 <v-list-item>
                     <v-btn
                         text

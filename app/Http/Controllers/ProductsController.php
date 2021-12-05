@@ -19,7 +19,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::orderBy('price', 'asc')->paginate(5);
 
         if (auth()->user()->is_admin) {
             return view('products.admin')->with('products', $products);

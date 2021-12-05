@@ -3,8 +3,8 @@
 @section('content')
 
 <v-container>
-    <v-row justify="center" dense>
-        @if(count($products) > 1)
+    @if(count($products) > 1)
+        <v-row justify="center" dense>
             @foreach ($products as $product)
                 <v-col cols="auto">
                     <v-card
@@ -36,9 +36,11 @@
                     </v-card>
                 </v-col>
             @endforeach
-        @else
-            <p>Ainda não existem produtos cadastrados.</p>
-        @endif
-    </v-row>
+        </v-row>
+        <v-row class="mt-5" justify="center">{{$products->links('pagination::bootstrap-4')}}</v-row>
+    @else
+        <p>Ainda não existem produtos cadastrados.</p>
+    @endif
+    
 </v-container>
 @endsection
