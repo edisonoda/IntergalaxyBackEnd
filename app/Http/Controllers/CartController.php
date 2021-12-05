@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Product;
 
 class CartController extends Controller
 {
@@ -13,7 +15,16 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        $user = User::find(auth()->user()->id);
+        $products = [];
+
+        foreach($user->products as $product){
+            array_push($products, $product);
+        }
+
+        //echo implode('+', $products);
+
+        return view('cart')->with('products', $products);
     }
 
     /**
@@ -34,7 +45,18 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::find(auth()->user()->id);
+        $product = Product::find($request->input('product_id'));
+
+        $this->validate($request, [
+            'product_id' => 'required',
+            'quantity' => 'required|min:1',
+        ]);
+
+        $user->products()->attach($request->input('product_id'),
+        ['product_quantity' => $request->input('quantity')]);
+
+        return redirect('/{{$user}}/cart')->with('success', 'Adicionado ao carrinho');
     }
 
     /**
@@ -77,8 +99,12 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user = User::find(auth()->user()->id);
+
+        $user->products()->detach($request->id);
+
+        return redirect('/{{$user}}/cart')->with('success', 'Produto removido com sucesso!');
     }
 }

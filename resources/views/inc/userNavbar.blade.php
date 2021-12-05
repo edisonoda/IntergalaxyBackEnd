@@ -1,6 +1,10 @@
 <v-app-bar dark app>
-    <v-btn text href="{{ url('/') }}">
+    <v-btn class="text-decoration-none text-h5 font-weight-black" plain text href="{{ url('/') }}">
         {{ config('app.name', 'Laravel') }}
+    </v-btn>
+
+    <v-btn class="text-decoration-none" text href="{{ url('/') }}">
+        Produtos
     </v-btn>
 
     <v-spacer></v-spacer>
@@ -18,6 +22,16 @@
             </v-btn>
         @endif
     @else
+        <v-btn
+        class="mr-3 text-decoration-none"
+        text
+        fab
+        href="/{{ Auth::user()->id }}/cart">
+            <v-icon dark>
+                mdi-cart-variant
+            </v-icon>
+        </v-btn>
+
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -32,8 +46,6 @@
                 <v-list-item>
                     <v-btn class="mx-auto" text color="primary" href="/profile/{{ Auth::user()->id }}/edit">Editar Dados</v-btn>
                 </v-list-item>
-
-                <v-divider></v-divider>
 
                 <v-list-item>
                     <v-btn

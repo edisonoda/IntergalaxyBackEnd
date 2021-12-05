@@ -8,7 +8,7 @@
             @foreach ($products as $product)
                 <v-col cols="auto">
                     <v-card
-                        class="mx-auto"
+                        class="mx-auto text-decoration-none"
                         max-width="225"
                         dark
                         href="/products/{{$product->id}}"

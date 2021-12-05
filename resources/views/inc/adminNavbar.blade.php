@@ -1,6 +1,10 @@
 <v-app-bar dark app>
-    <v-btn text href="{{ url('/') }}">
+    <v-btn class="text-decoration-none text-h5 font-weight-black" plain text href="{{ url('/') }}">
         {{ config('app.name', 'Laravel') }}
+    </v-btn>
+
+    <v-btn class="text-decoration-none" text href="{{ url('/') }}">
+        Produtos
     </v-btn>
 
     <v-spacer></v-spacer>

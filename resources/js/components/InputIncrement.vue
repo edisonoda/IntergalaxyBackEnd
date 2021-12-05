@@ -28,6 +28,7 @@
         v-model="count"
         class="mx-2 col-3"
         id="quantity"
+        name="quantity"
         dense
         height="40"
         type="number"

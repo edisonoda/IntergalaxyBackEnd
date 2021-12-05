@@ -26,21 +26,34 @@
                 </v-card-text>
 
                 <v-card-text>
-                    <input-increment
-                    v-bind:quantity="quantity"
-                    v-on:increment-quantity="quantity++"
-                    v-on:decrement-quantity="quantity--"></input-increment>
+                    <form method="POST" action="/{{ Auth::user()->id }}/cart">
+                        @csrf
 
-                    <div class="d-flex flex-row">
-                        <v-btn
-                        class="mx-2"
-                        height="40"
-                        outlined
-                        rounded
-                        >
-                        Adicionar ao carrinho
-                        </v-btn>
-                    </div>
+                        <input-increment
+                        v-bind:quantity="quantity"
+                        v-on:increment-quantity="quantity++"
+                        v-on:decrement-quantity="quantity--"></input-increment>
+
+                        <input type="hidden" name="product_id" value="{{$product->id}}" />
+
+                        @error('quantity')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+
+                        <div class="d-flex flex-row">
+                            <v-btn
+                            type="submit"
+                            class="mx-2"
+                            height="40"
+                            outlined
+                            rounded
+                            >
+                            Adicionar ao carrinho
+                            </v-btn>
+                        </div>
+                    </form>
                 </v-card-text>
             </v-col>
         </v-row>

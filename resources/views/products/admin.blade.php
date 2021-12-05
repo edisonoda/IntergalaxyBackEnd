@@ -26,13 +26,17 @@
 
                     <v-spacer></v-spacer>
 
-                    <v-btn class="ml-1" color="primary" href="/products/{{$product->id}}/edit">Editar</v-btn>
+                    <div class="d-flex flex-row">
+                        <v-btn class="ml-1" color="primary" href="/products/{{$product->id}}/edit">Editar</v-btn>
+                    </div>
 
-                    <form method="POST" action="/products/{{$product->id}}">
-                        @csrf
-                        <v-btn type="submit" class="ml-1" color="error">Deletar</v-btn>
-                        {{ method_field('DELETE') }}
-                    </form>
+                    <div class="d-flex flex-row">
+                        <form method="POST" action="/products/{{$product->id}}">
+                            @csrf
+                            <v-btn type="submit" class="ml-1" color="error">Deletar</v-btn>
+                            {{ method_field('DELETE') }}
+                        </form>
+                    </div>
                 </v-toolbar>
             </v-card>
         @endforeach

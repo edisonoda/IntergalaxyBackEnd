@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 
 class OrdersController extends Controller
 {
@@ -45,7 +46,17 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        return view('orders.create');
+        $user = User::find(auth()->user()->id);
+        $products = [];
+
+        foreach($user->products as $product){
+            array_push($products, $product);
+            CartController::destroy($product);
+        }
+
+        //echo implode('+', $products);
+
+        return view('/')->with('products', $products);
     }
 
     /**
@@ -57,12 +68,10 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'status' => 'required',
             'user_id' => 'required',
         ]);
 
         $order = new Order;
-        $order->status = $request->input('status');
         $order->user_id = auth()->user()->id;
         $order->save();
         

@@ -15,7 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['Cancelado', 'Em espera', 'Aprovado']);
+            $table->enum('status', ['Cancelado', 'Em espera', 'Aprovado'])->default('Em espera');
 
             $table->foreignId('user_id')->constrained('users');
 
