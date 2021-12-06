@@ -11,7 +11,7 @@
                         class="mx-auto text-decoration-none"
                         max-width="225"
                         dark
-                        href="/products/{{$product->id}}"
+                        href="/products/show/{{$product->id}}"
                         hover
                         height="400">
                         <v-img

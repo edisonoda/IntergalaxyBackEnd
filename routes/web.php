@@ -28,7 +28,7 @@ Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'des
 
 // Product routes
 Route::get('/products', [App\Http\Controllers\ProductsController::class, 'index'])->name('products.index');
-Route::get('/products/{product}', [App\Http\Controllers\ProductsController::class, 'show'])->name('products.show');
+Route::get('/products/show/{product}', [App\Http\Controllers\ProductsController::class, 'show'])->name('products.show');
 Route::post('/products', [App\Http\Controllers\ProductsController::class, 'store'])->name('products.store')->middleware('is_admin');
 Route::get('/products/create', [App\Http\Controllers\ProductsController::class, 'create'])->name('products.create')->middleware('is_admin');
 Route::delete('/products/{product}', [App\Http\Controllers\ProductsController::class, 'destroy'])->name('products.destroy')->middleware('is_admin');
