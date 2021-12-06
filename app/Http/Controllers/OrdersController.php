@@ -105,7 +105,7 @@ class OrdersController extends Controller
         }        
 
         if(!$permission)
-            return redirect('/home')->with('error', 'Você não possui permissão para fazer isso!');
+            return redirect('/')->with('error', 'Você não possui permissão para fazer isso!');
 
         $order->status = $request->input('status');
         $order->save();
@@ -124,7 +124,7 @@ class OrdersController extends Controller
         $order = Order::find($request->id);
 
         if(auth()->user()->id !== $order->user_id && !auth()->user()->is_admin)
-            return redirect('/home')->with('error', 'Você não possui permissão para fazer isso!');
+            return redirect('/')->with('error', 'Você não possui permissão para fazer isso!');
 
         $order->delete();
 

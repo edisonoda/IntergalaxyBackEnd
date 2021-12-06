@@ -79,7 +79,7 @@ class CartController extends Controller
         }        
 
         if(!$permission)
-            return redirect('/home')->with('error', 'Você não possui permissão para fazer isso!');
+            return redirect('/')->with('error', 'Você não possui permissão para fazer isso!');
 
         $user->products()->detach($request->id);
 

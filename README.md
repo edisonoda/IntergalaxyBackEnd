@@ -15,15 +15,13 @@ A partir do arquivo .env.example, copie um novo:
 
     cp .env.example .env
 
+Gere uma nova chave:
+
+    php artisan key:generate
+
 Crie um banco de dados em branco e coloque os dados necessários no .env. Então, execute as migrações das tabelas:
 
-    php artisan migrate
-
-E, caso queira, execute os seeders também:
-
-    php artisan db:seed --class=CreateUsersSeeder
-    php artisan db:seed --class=CreateProductsSeeder
-    php artisan db:seed --class=CreateOrdersSeeder
+    php artisan migrate --seed
                 
 Inicie o servidor de forma local (http://localhost:8000):
 
