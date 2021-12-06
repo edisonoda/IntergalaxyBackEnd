@@ -65,9 +65,6 @@ class OrdersController extends Controller
         $order->user_id = $user->id;
         $order->save();
 
-        if(auth()->user()->id !== $user->orders->user_id)
-            return redirect('/home')->with('error', 'Você não possui permissão para fazer isso!');
-
         foreach($user->products as $product){
             $order->products()->attach($product->id, [
                 'product_quantity' => $product->pivot->product_quantity,
@@ -124,10 +121,11 @@ class OrdersController extends Controller
      */
     public function destroy(Request $request)
     {
-        if(auth()->user()->id !== $user->orders->user_id && !auth()->user()->is_admin)
+        $order = Order::find($request->id);
+
+        if(auth()->user()->id !== $order->user_id && !auth()->user()->is_admin)
             return redirect('/home')->with('error', 'Você não possui permissão para fazer isso!');
 
-        $order = Order::find($request->id);
         $order->delete();
 
         return redirect('/orders/'.auth()->user()->id)->with('success', 'Pedido cancelado com sucesso!');

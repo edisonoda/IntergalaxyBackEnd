@@ -7,8 +7,7 @@
         dark>
         <v-row no-gutters>
             <v-col md="6">
-                <v-img 
-                alt="`{{$product->title}}`"
+                <v-img
                 src="{{$product->image_path}}"
                 max-height="500"></v-img>
             </v-col>
