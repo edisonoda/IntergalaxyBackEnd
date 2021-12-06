@@ -53,7 +53,7 @@
                 
                 <v-spacer></v-spacer>
 
-                <form method="POST" action="/{{ Auth::user()->id }}/orders">
+                <form method="POST" action="/orders">
                     @csrf
                     <input type="hidden" name="total_price" value="{{$total_price}}"/>
                     <v-btn type="submit" class="ml-1" color="primary">

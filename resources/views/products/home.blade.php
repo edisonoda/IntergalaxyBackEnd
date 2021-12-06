@@ -3,7 +3,7 @@
 @section('content')
 
 <v-container>
-    @if(count($products) > 1)
+    @if(count($products) > 0)
         <v-row justify="center" dense>
             @foreach ($products as $product)
                 <v-col cols="auto">

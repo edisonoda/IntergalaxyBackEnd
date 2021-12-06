@@ -78,7 +78,7 @@
                                 </form>
                             @else
                                 <cancel-dialog
-                                button-text="Cancelar"
+                                button-text="Excluir Pedido"
                                 action="/orders/{{$order->id}}"
                                 csrf-token="{{ csrf_token() }}"
                                 route-param="{{$order->id}}">

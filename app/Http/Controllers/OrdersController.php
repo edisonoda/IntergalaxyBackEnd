@@ -107,7 +107,7 @@ class OrdersController extends Controller
         $order = Order::find($request->id);
         $order->delete();
 
-        return redirect('/'.auth()->user()->id.'/orders')->with('success', 'Pedido cancelado com sucesso!');
+        return redirect('/orders/'.auth()->user()->id)->with('success', 'Pedido cancelado com sucesso!');
     }
 
     public function updateTotalPrice($id){

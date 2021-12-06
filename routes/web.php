@@ -26,8 +26,8 @@ Route::resource('/{user}/cart', 'App\Http\Controllers\CartController');
 
 // Profile routes
 Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
-Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit')->middleware('is_admin');
-Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update')->middleware('is_admin');
+Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('user.destroy')->middleware('is_admin');
 
 // Order routes
@@ -35,4 +35,4 @@ Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->
 Route::get('/orders/{user}', [App\Http\Controllers\OrdersController::class, 'indexByUser'])->name('orders.index');
 Route::post('/orders', [App\Http\Controllers\OrdersController::class, 'store'])->name('orders.store');
 Route::put('/orders/{order}', [App\Http\Controllers\OrdersController::class, 'update'])->name('orders.update')->middleware('is_admin');
-Route::delete('/orders/{order}', [App\Http\Controllers\OrdersController::class, 'destroy'])->name('orders.destroy')->middleware('is_admin');
+Route::delete('/orders/{order}', [App\Http\Controllers\OrdersController::class, 'destroy'])->name('orders.destroy');
