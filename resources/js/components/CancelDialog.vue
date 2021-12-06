@@ -16,7 +16,7 @@
         </template>
 
         <v-card>
-            <v-card-title class="text-h5 red">
+            <v-card-title class="text-h5">
             Importante!
             </v-card-title>
 

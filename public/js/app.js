@@ -38400,7 +38400,7 @@ var render = function () {
           _c(
             "v-card",
             [
-              _c("v-card-title", { staticClass: "text-h5 red" }, [
+              _c("v-card-title", { staticClass: "text-h5" }, [
                 _vm._v("\n        Importante!\n        "),
               ]),
               _vm._v(" "),

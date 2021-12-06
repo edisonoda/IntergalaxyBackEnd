@@ -2,7 +2,7 @@
 
 Clone o repositório:
 
-    git clone --recurse-submodules https://github.com/edisonoda/IntergalaxyBackEnd.git
+    git clone https://github.com/edisonoda/IntergalaxyBackEnd.git
 
 ### Setup
 
