@@ -72,6 +72,7 @@
                     </v-expansion-panel-content>
                 </v-expansion-panel>
             @endforeach
+            <v-row class="mt-5" justify="center">{{$orders->links('pagination::bootstrap-4')}}</v-row>
         </v-expansion-panels>
     @else
         <div class="mx-auto d-flex align-center justify-center">

@@ -49,7 +49,7 @@
                 </v-toolbar>
             </v-card>
         @endforeach
-        {{$users->links()}}
+        <v-row class="mt-5" justify="center">{{$users->links('pagination::bootstrap-4')}}</v-row>
     @else
         <p>Ainda não existem usuários cadastrados.</p>
     @endif

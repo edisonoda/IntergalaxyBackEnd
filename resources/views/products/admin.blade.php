@@ -45,7 +45,7 @@
                 </v-toolbar>
             </v-card>
         @endforeach
-        {{$products->links()}}
+        <v-row class="mt-5" justify="center">{{$products->links('pagination::bootstrap-4')}}</v-row>
     @else
         <p>Ainda não existem produtos cadastrados.</p>
     @endif

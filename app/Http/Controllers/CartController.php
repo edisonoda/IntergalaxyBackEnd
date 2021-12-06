@@ -65,13 +65,14 @@ class CartController extends Controller
     public function destroy(Request $request)
     {
         $user = User::find(auth()->user()->id);
+
         $permission = false;
 
         if(auth()->user()->is_admin){
             $permission = true;
         } else {
             foreach($user->products as $product){
-                if(auth()->user()->id === $product->users){
+                if($request->id == $product->id){
                     $permission = true;
                     break;
                 }

@@ -44,6 +44,7 @@
                     </v-toolbar>
                 @endforeach
             </v-card-text>
+            <v-row class="mt-5" justify="center">{{$products->links('pagination::bootstrap-4')}}</v-row>
 
             <v-card-text class="d-flex flex-row text-right pt-0 ">
                 <p class="text-left my-auto text-h6 mr-3">Total: </p>

@@ -57,6 +57,7 @@
                 </v-expansion-panel>
             @endforeach
         </v-expansion-panels>
+        <v-row class="mt-5" justify="center">{{$orders->links('pagination::bootstrap-4')}}</v-row>
     @else
         <div class="mx-auto d-flex align-center justify-center">
             <p>Você não realizou nenhum pedido.</p>
