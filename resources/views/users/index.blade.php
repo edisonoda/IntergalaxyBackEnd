@@ -37,7 +37,12 @@
                     <div class="d-flex flex-row">
                         <form method="POST" action="/users/{{$user->id}}">
                             @csrf
-                            <cancel-dialog button-text="Deletar"></cancel-dialog>
+                            <cancel-dialog
+                            button-text="Deletar"
+                            action="/users/{{$user->id}}"
+                            csrf-token="{{ csrf_token() }}"
+                            route-param="{{$user->id}}"
+                            ></cancel-dialog>
                             {{ method_field('DELETE') }}
                         </form>
                     </div>

@@ -55,4 +55,19 @@ class UserController extends Controller
         
         return redirect('/')->with('success', 'Dados atualizados com sucesso!');
     }
+
+    public function destroy($id)
+    {
+        $product = User::find($id);
+
+        $orders = $product->orders;
+
+        foreach($orders as $order){
+            \App\Controllers\OrdersController::updateTotalPrice($order->id);
+        }
+
+        $product->delete();
+
+        return redirect('/users')->with('success', 'Conta excluída com sucesso!');
+    }
 }

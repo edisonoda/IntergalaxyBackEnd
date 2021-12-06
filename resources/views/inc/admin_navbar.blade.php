@@ -11,7 +11,7 @@
     class="text-decoration-none"
     text
     href="{{ route('orders') }}">
-            Pedidos
+        Pedidos
     </v-btn>
 
     <v-btn

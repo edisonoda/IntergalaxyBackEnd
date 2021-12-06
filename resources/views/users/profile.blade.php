@@ -9,7 +9,7 @@
             <div class="card">
 
                 <div class="card-body">
-                    <form method="POST" action="/users/{{$user->id}}/edit">
+                    <form method="POST" action="/users/{{$user->id}}">
                         @csrf
 
                         <div class="form-group row">
@@ -64,17 +64,11 @@
 
                         <div class="form-group row mb-0">
                             <div class="my-auto mx-auto">
-                                @if (Auth::user()->is_admin)
-                                    <v-btn class="mr-5" small href="{{ route('users') }}">
-                                        Cancelar
-                                    </v-btn>
-                                @else
-                                    <v-btn class="mr-5" small href="{{ route('home') }}">
-                                        Cancelar
-                                    </v-btn>
-                                @endif
+                                <v-btn class="mx-3" small href="{{ route('home') }}">
+                                    Cancelar
+                                </v-btn>
 
-                                <v-btn class="ml-5" small type="submit">
+                                <v-btn class="mx-3 primary" small type="submit">
                                     Atualizar
                                 </v-btn>
                             </div>

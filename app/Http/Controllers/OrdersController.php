@@ -77,18 +77,6 @@ class OrdersController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $order = Order::find($id);
-        return view('orders.show')->with('order', $order);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -120,5 +108,19 @@ class OrdersController extends Controller
         $order->delete();
 
         return redirect('/'.auth()->user()->id.'/orders')->with('success', 'Pedido cancelado com sucesso!');
+    }
+
+    public function updateTotalPrice($id){
+        $order = Order::find($id);
+        $products = [];
+        $totalPrice = 0;
+
+        foreach($order->products as $product){
+            array_push($products, $product);
+            $totalPrice += $product->price * $product->pivot->product_quantity;
+        }
+
+        $order->total_price = $totalPrice;
+        $order->save();
     }
 }

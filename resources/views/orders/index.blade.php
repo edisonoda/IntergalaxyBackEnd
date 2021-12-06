@@ -49,8 +49,7 @@
 
                             @if (Auth::user()->is_admin)  
                                 <form method="POST" action="{{route('orders.update', [
-                                        'order' => $order->id,
-                                        'user' => $order->user->id
+                                    'order' => $order->id
                                 ])}}">
                                     @csrf
 
@@ -80,7 +79,7 @@
                             @else
                                 <cancel-dialog
                                 button-text="Cancelar"
-                                action="/{{ Auth::user()->id }}/orders/{{$order->id}}"
+                                action="/orders/{{$order->id}}"
                                 csrf-token="{{ csrf_token() }}"
                                 route-param="{{$order->id}}">
                                 </cancel-dialog>
