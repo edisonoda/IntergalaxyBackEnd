@@ -9,6 +9,14 @@
                 tile
             >
                 <v-toolbar elevation="1" class="mb-1">
+                    <v-btn
+                        class="text-decoration-none mx-auto"
+                        fab
+                        small
+                        elevation="1"
+                        href="{{ route('orders.index', ['user' => $user->id]) }}">
+                            <v-icon>mdi-cart</v-icon>
+                    </v-btn>
                     <v-list-item>
                         <v-list-item-content  class="pt-2 mt-2">
                             <v-list-item-title>{{$user->name}}</v-list-item-title>

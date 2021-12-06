@@ -10,7 +10,7 @@
     <v-btn
     class="text-decoration-none"
     text
-    href="{{ route('orders.index', ['user', Auth::user()->id]) }}">
+    href="{{ route('orders') }}">
             Pedidos
     </v-btn>
 

@@ -25,18 +25,18 @@ class OrdersController extends Controller
             $orders = Order::orderBy('id', 'asc')->paginate(20);
             return view('orders.index')->with('orders', $orders);
         }else{
-            $orders = Order::where('user_id', auth()->user()->id)->paginate(20);
-            return view('orders.index')->with('orders', $orders);
+            return redirect()->route('products.home')->with('error','Você não possui permissão para isso.');
         }
     }
 
-    public function indexByUser($user)
+    public function indexByUser($id)
     {
         if (auth()->user()->is_admin) {
-            $orders = Order::where('user_id', $user)->get();
-            return view('orders.admin')->with('orders', $orders);
+            $orders = Order::where('user_id', $id)->get();
+            return view('orders.index')->with('orders', $orders);
         }else{
-            return redirect()->route('products.home')->with('error','Você não possui permissão para isso.');
+            $orders = Order::where('user_id', auth()->user()->id)->paginate(20);
+            return view('orders.index')->with('orders', $orders);
         }
     }
 
@@ -89,18 +89,6 @@ class OrdersController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $order = Order::find($id);
-        return view('orders.edit')->with('order', $order);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -110,14 +98,14 @@ class OrdersController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'status' => 'required',
+            'status' => 'required|in:Cancelado,Em espera,Aprovado',
         ]);
 
         $order = Order::find($id);
         $order->status = $request->input('status');
         $order->save();
         
-        return redirect('/')->with('success', 'Pedido atualizado com sucesso!');
+        return redirect('orders')->with('success', 'Pedido atualizado com sucesso!');
     }
 
     /**

@@ -31,7 +31,8 @@ Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'e
 Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update')->middleware('is_admin');;
 
 // Order routes
-Route::get('{user}/orders', [App\Http\Controllers\OrdersController::class, 'indexByUser'])->name('user.orders')->middleware('is_admin');
+Route::get('/orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders')->middleware('is_admin');
+Route::get('{user}/orders', [App\Http\Controllers\OrdersController::class, 'indexByUser'])->name('orders.index');
 
 //Route::get('{user}/orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders.index');
 //Route::get('{user}/orders/create', [App\Http\Controllers\OrdersController::class, 'create'])->name('orders.create');

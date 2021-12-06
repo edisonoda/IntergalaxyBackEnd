@@ -47,29 +47,36 @@
                             </div>
                             <v-spacer></v-spacer>
 
-                            @if (Auth::user()->is_admin)
-                                <v-btn
-                                class="primary mx-3 my-auto"
-                                rounded
-                                >
-                                    Editar
-                                </v-btn>
-                                
-                                <v-btn
-                                class="red mx-1 my-auto"
-                                fab
-                                small
-                                >
-                                    <v-icon dark>mdi-arrow-u-left-top-bold</v-icon>
-                                </v-btn>
+                            @if (Auth::user()->is_admin)  
+                                <form method="POST" action="{{route('orders.update', [
+                                        'order' => $order->id,
+                                        'user' => $order->user->id
+                                ])}}">
+                                    @csrf
 
-                                <v-btn
-                                class="green mx-1 my-auto"
-                                fab
-                                small
-                                >
-                                    <v-icon dark>mdi-arrow-up-bold</v-icon>
-                                </v-btn>
+                                    <v-btn
+                                    class="red mx-1 my-auto"
+                                    fab
+                                    small
+                                    type="submit"
+                                    name="status"
+                                    value="Cancelado"
+                                    >
+                                        <v-icon dark>mdi-arrow-u-left-top-bold</v-icon>
+                                    </v-btn>
+
+                                    <v-btn
+                                    class="green mx-1 my-auto"
+                                    fab
+                                    small
+                                    type="submit"
+                                    name="status"
+                                    value="Aprovado"
+                                    >
+                                        <v-icon dark>mdi-arrow-up-bold</v-icon>
+                                    </v-btn>
+                                    {{ method_field('PUT') }}
+                                </form>
                             @else
                                 <cancel-dialog
                                 button-text="Cancelar"
