@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
 
 class OrdersController extends Controller
 {
@@ -46,16 +47,6 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        $user = User::find(auth()->user()->id);
-        $products = [];
-
-        foreach($user->products as $product){
-            array_push($products, $product);
-            CartController::destroy($product);
-        }
-
-        //echo implode('+', $products);
-
         return view('/')->with('products', $products);
     }
 
@@ -65,16 +56,21 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $this->validate($request, [
-            'user_id' => 'required',
-        ]);
+        $user = User::find(auth()->user()->id);
 
         $order = new Order;
-        $order->user_id = auth()->user()->id;
+        $order->user_id = $user->id;
         $order->save();
-        
+
+        foreach($user->products as $product){
+            $order->products()->attach($product->id,
+            ['product_quantity' => $product->pivot->product_quantity]);
+
+            $user->products()->detach($product->id);
+        }
+
         return redirect('/')->with('success', 'Requisição realizada com sucesso! Aguarde a aprovação do pedido.');
     }
 

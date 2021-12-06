@@ -31,6 +31,7 @@
                         <v-spacer></v-spacer>
 
                         <div class="d-flex flex-row">
+                            <div class="mr-3 my-auto text-body-1 brMoney">{{ $product->price * $product->pivot->product_quantity}}</div>
                             <form method="POST" action="/{{ Auth::user()->id }}/cart/{{$product->id}}">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$product->id}}"/>
@@ -45,18 +46,31 @@
                 @endforeach
             </v-card-text>
 
-            <v-card-text class="text-right">
-                <form method="POST" action="/{{ Auth::user()->id }}/order">
+            <v-card-text class="text-right pt-0">
+                <v-row>
+                    <v-col>
+                        <p class="text-left my-auto text-h6">Total: </p>
+                    </v-col>
+                    <v-col>
+                        <p class="my-auto text-h6 brMoney">
+                            {{ $total_price }}
+                        </p>
+                    </v-col>
+                </v-row>
+                
+                <form method="POST" action="/{{ Auth::user()->id }}/orders">
                     @csrf
-                    <input type="hidden" name="products" value="{{$products}}"/>
-
-                    <v-btn small fab type="submit" class="ml-1" color="primary">
-                        <v-icon dark>Realizar pedido</v-icon>
+                    <v-btn type="submit" class="ml-1" color="primary">
+                        Realizar pedido
                     </v-btn>
                 </form>
             </v-card-text>
         @else
-            <p>Ainda não existem produtos cadastrados.</p>
+            <v-card-text>
+                <v-sheet class="mx-auto d-flex align-center justify-center" height=300>
+                    Adicione produtos ao carrinho para realizar um pedido.
+                </v-sheet>
+            </v-card-text>
         @endif
     </v-card>
 @endsection

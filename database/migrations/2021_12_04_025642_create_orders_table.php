@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->decimal('total_price', $precision = 10, $scale = 2)->default(0);
             $table->enum('status', ['Cancelado', 'Em espera', 'Aprovado'])->default('Em espera');
 
             $table->foreignId('user_id')->constrained('users');

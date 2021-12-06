@@ -17,14 +17,16 @@ class CartController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $products = [];
+        $totalPrice = 0;
 
         foreach($user->products as $product){
             array_push($products, $product);
+            $totalPrice += $product->price * $product->pivot->product_quantity;
         }
 
         //echo implode('+', $products);
 
-        return view('cart')->with('products', $products);
+        return view('cart', ['products' => $products, 'total_price' => $totalPrice]);
     }
 
     /**
@@ -56,7 +58,7 @@ class CartController extends Controller
         $user->products()->attach($request->input('product_id'),
         ['product_quantity' => $request->input('quantity')]);
 
-        return redirect('/{{$user}}/cart')->with('success', 'Adicionado ao carrinho');
+        return redirect('/')->with('success', 'Adicionado ao carrinho');
     }
 
     /**
