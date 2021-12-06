@@ -2211,6 +2211,15 @@ window.addEventListener('load', function () {
     vuetify: _vuetify__WEBPACK_IMPORTED_MODULE_0__["default"],
     data: {
       quantity: 1
+    },
+    methods: {
+      colorStatus: function colorStatus(status) {
+        if (status == 'Aprovado') {
+          return 'green--text';
+        } else if (status == 'Cancelado') {
+          return 'red--text';
+        }
+      }
     }
   });
 });

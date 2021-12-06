@@ -38,6 +38,15 @@ window.addEventListener('load', function () {
         vuetify,
         data:{
             quantity: 1
+        },
+        methods:{
+            colorStatus(status) {
+                if(status == 'Aprovado') {
+                    return 'green--text'
+                } else if(status == 'Cancelado') {
+                    return 'red--text'
+                }
+          }
         }
     })
 })

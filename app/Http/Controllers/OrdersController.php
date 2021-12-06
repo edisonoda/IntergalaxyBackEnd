@@ -22,11 +22,11 @@ class OrdersController extends Controller
     public function index()
     {
         if (auth()->user()->is_admin) {
-            $orders = Order::all();
+            $orders = Order::orderBy('id', 'asc')->paginate(20);
             return view('orders.admin')->with('orders', $orders);
         }else{
-            //$orders = Order::all();
-            return view('orders.home')->with('orders', $orders);
+            $orders = Order::where('user_id', auth()->user()->id)->paginate(20);
+            return view('orders.index')->with('orders', $orders);
         }
     }
 
@@ -56,17 +56,19 @@ class OrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
         $user = User::find(auth()->user()->id);
 
         $order = new Order;
+        $order->total_price = $request->input('total_price');
         $order->user_id = $user->id;
         $order->save();
 
         foreach($user->products as $product){
-            $order->products()->attach($product->id,
-            ['product_quantity' => $product->pivot->product_quantity]);
+            $order->products()->attach($product->id, [
+                'product_quantity' => $product->pivot->product_quantity,
+            ]);
 
             $user->products()->detach($product->id);
         }

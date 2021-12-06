@@ -23,6 +23,13 @@
         @endif
     @else
         <v-btn
+        class="text-decoration-none"
+        text
+        href="{{ route('orders.index', [Auth::user()->id]) }}">
+            Meus Pedidos
+        </v-btn>
+
+        <v-btn
         class="mr-3 text-decoration-none"
         text
         fab

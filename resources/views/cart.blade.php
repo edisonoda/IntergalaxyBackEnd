@@ -21,10 +21,9 @@
                                 ></v-img>
                             </v-list-item-avatar>
 
-                            <v-list-item-content  class="py-2 my-2" three-line>
+                            <v-list-item-content  class="py-2 my-2" two-line>
                                 <v-list-item-title>{{$product->title}} (x{{$product->pivot->product_quantity}})</v-list-item-title>
                                 <v-list-item-subtitle class="brMoney">{{$product->price}}</v-list-item-subtitle>
-                                <v-list-item-subtitle>{{$product->created_at}}</v-list-item-subtitle>
                             </v-list-item-content>
                         </v-list-item>
 
@@ -60,6 +59,7 @@
                 
                 <form method="POST" action="/{{ Auth::user()->id }}/orders">
                     @csrf
+                    <input type="hidden" name="total_price" value="{{$total_price}}"/>
                     <v-btn type="submit" class="ml-1" color="primary">
                         Realizar pedido
                     </v-btn>

@@ -55,8 +55,9 @@ class CartController extends Controller
             'quantity' => 'required|min:1',
         ]);
 
-        $user->products()->attach($request->input('product_id'),
-        ['product_quantity' => $request->input('quantity')]);
+        $user->products()->attach($request->input('product_id'),[
+            'product_quantity' => $request->input('quantity'),
+        ]);
 
         return redirect('/')->with('success', 'Adicionado ao carrinho');
     }
