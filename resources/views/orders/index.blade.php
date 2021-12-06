@@ -46,10 +46,12 @@
                                 </p>
                             </div>
                             <v-spacer></v-spacer>
-                            <form method="POST" action="/{{ Auth::user()->id }}/cart/{{$order->id}}">
-                                @csrf
-                                <cancel-dialog button-text="Cancelar"></cancel-dialog>
-                            </form>
+                            <cancel-dialog
+                            button-text="Cancelar"
+                            action="/{{ Auth::user()->id }}/orders/{{$order->id}}"
+                            csrf-token="{{ csrf_token() }}"
+                            route-param="{{$order->id}}">
+                            </cancel-dialog>
                         </div>
                     </v-expansion-panel-content>
                 </v-expansion-panel>

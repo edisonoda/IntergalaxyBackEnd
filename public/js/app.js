@@ -2114,8 +2114,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['buttonText'],
+  props: ['buttonText', 'action', 'csrfToken', 'routeParam'],
   data: function data() {
     return {
       dialog: false
@@ -2277,23 +2281,21 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].component('cancel-dialog', (__webpac
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-window.addEventListener('load', function () {
-  var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
-    el: '#app',
-    vuetify: _vuetify__WEBPACK_IMPORTED_MODULE_0__["default"],
-    data: {
-      quantity: 1
-    },
-    methods: {
-      colorStatus: function colorStatus(status) {
-        if (status == 'Aprovado') {
-          return 'green--text';
-        } else if (status == 'Cancelado') {
-          return 'red--text';
-        }
+var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
+  el: '#app',
+  vuetify: _vuetify__WEBPACK_IMPORTED_MODULE_0__["default"],
+  data: {
+    quantity: 1
+  },
+  methods: {
+    colorStatus: function colorStatus(status) {
+      if (status == 'Aprovado') {
+        return 'green--text';
+      } else if (status == 'Cancelado') {
+        return 'red--text';
       }
     }
-  });
+  }
 });
 
 /***/ }),
@@ -38420,22 +38422,44 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("\n            Voltar\n        ")]
+                    [_vm._v("\n                Voltar\n            ")]
                   ),
                   _vm._v(" "),
                   _c("v-spacer"),
                   _vm._v(" "),
                   _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "primary", type: "submit" },
-                      on: {
-                        click: function ($event) {
-                          _vm.dialog = false
+                    "form",
+                    { attrs: { method: "POST", action: _vm.action } },
+                    [
+                      _c("input", {
+                        attrs: {
+                          type: "hidden",
+                          name: "_method",
+                          value: "DELETE",
                         },
-                      },
-                    },
-                    [_vm._v("\n            Continuar\n        ")]
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "_token" },
+                        domProps: { value: _vm.csrfToken },
+                      }),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: { type: "hidden", name: "id" },
+                        domProps: { value: _vm.routeParam },
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        { attrs: { color: "primary", type: "submit" } },
+                        [
+                          _vm._v(
+                            "\n                    Continuar\n                "
+                          ),
+                        ]
+                      ),
+                    ],
+                    1
                   ),
                 ],
                 1

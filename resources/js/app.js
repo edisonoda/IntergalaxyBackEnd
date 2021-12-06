@@ -33,21 +33,19 @@ Vue.component('cancel-dialog', require('./components/CancelDialog.vue').default)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-window.addEventListener('load', function () {
-    const app = new Vue({
-        el: '#app',
-        vuetify,
-        data:{
-            quantity: 1
-        },
-        methods:{
-            colorStatus(status) {
-                if(status == 'Aprovado') {
-                    return 'green--text'
-                } else if(status == 'Cancelado') {
-                    return 'red--text'
-                }
-          }
+const app = new Vue({
+    el: '#app',
+    vuetify,
+    data:{
+        quantity: 1
+    },
+    methods:{
+        colorStatus(status) {
+            if(status == 'Aprovado') {
+                return 'green--text'
+            } else if(status == 'Cancelado') {
+                return 'red--text'
+            }
         }
-    })
+    }
 })

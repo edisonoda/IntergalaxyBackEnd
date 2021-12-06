@@ -27,20 +27,24 @@
             <v-divider class="my-0"></v-divider>
 
             <v-card-actions>
-            <v-btn
-                text
-                @click="dialog = false"
-            >
-                Voltar
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn
-                color="primary"
-                @click="dialog = false"
-                type="submit"
-            >
-                Continuar
-            </v-btn>
+                <v-btn
+                    text
+                    @click="dialog = false"
+                >
+                    Voltar
+                </v-btn>
+                <v-spacer></v-spacer>
+                <form method="POST" v-bind:action=action>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" v-bind:value="csrfToken">
+                    <input type="hidden" name="id" v-bind:value=routeParam>
+                    <v-btn
+                        color="primary"
+                        type="submit"
+                    >
+                        Continuar
+                    </v-btn>
+                </form>
             </v-card-actions>
         </v-card>
         </v-dialog>
@@ -49,7 +53,7 @@
 
 <script>
     export default {
-        props:['buttonText'],
+        props:['buttonText', 'action', 'csrfToken', 'routeParam'],
         data () {
             return {
             dialog: false,
