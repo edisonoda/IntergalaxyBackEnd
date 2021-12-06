@@ -25,6 +25,7 @@ import '../css/app.css'
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('input-increment', require('./components/InputIncrement.vue').default);
+Vue.component('cancel-dialog', require('./components/CancelDialog.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

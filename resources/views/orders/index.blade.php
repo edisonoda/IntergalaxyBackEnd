@@ -39,10 +39,18 @@
                             @endforeach
                         </v-list>
 
-                        <p class="mb-n1 text-subtitle-1">Total: </p>
-                        <p class="my-0 text-h6 brMoney">
-                            {{ $order->total_price }}
-                        </p>
+                        <div class="d-flex flex-row">
+                            <div><p class="mb-n1 text-subtitle-1">Total: </p>
+                                <p class="my-0 text-h6 brMoney">
+                                    {{ $order->total_price }}
+                                </p>
+                            </div>
+                            <v-spacer></v-spacer>
+                            <form method="POST" action="/{{ Auth::user()->id }}/cart/{{$order->id}}">
+                                @csrf
+                                <cancel-dialog button-text="Cancelar"></cancel-dialog>
+                            </form>
+                        </div>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
             @endforeach
