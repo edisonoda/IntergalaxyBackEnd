@@ -27,7 +27,7 @@
                     <v-spacer></v-spacer>
 
                     <div class="d-flex flex-row">
-                        <v-btn class="ml-1" color="primary" href="/products/{{$product->id}}/edit">Editar</v-btn>
+                        <v-btn class="mx-1" color="primary" href="/products/{{$product->id}}/edit">Editar</v-btn>
                     </div>
 
                     <div class="d-flex flex-row">

@@ -36,7 +36,7 @@
                                 <input type="hidden" name="id" value="{{$product->id}}"/>
 
                                 <v-btn small fab type="submit" class="ml-1" color="error">
-                                    <v-icon dark>mdi-minus</v-icon>
+                                    <v-icon dark>mdi-trash-can-outline</v-icon>
                                 </v-btn>
                                 {{ method_field('DELETE') }}
                             </form>
@@ -45,18 +45,14 @@
                 @endforeach
             </v-card-text>
 
-            <v-card-text class="text-right pt-0">
-                <v-row>
-                    <v-col>
-                        <p class="text-left my-auto text-h6">Total: </p>
-                    </v-col>
-                    <v-col>
-                        <p class="my-auto text-h6 brMoney">
-                            {{ $total_price }}
-                        </p>
-                    </v-col>
-                </v-row>
+            <v-card-text class="d-flex flex-row text-right pt-0 ">
+                <p class="text-left my-auto text-h6 mr-3">Total: </p>
+                <p class="my-auto text-h6 brMoney">
+                    {{ $total_price }}
+                </p>
                 
+                <v-spacer></v-spacer>
+
                 <form method="POST" action="/{{ Auth::user()->id }}/orders">
                     @csrf
                     <input type="hidden" name="total_price" value="{{$total_price}}"/>

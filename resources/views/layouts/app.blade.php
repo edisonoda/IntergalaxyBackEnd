@@ -25,12 +25,12 @@
     <div id='app'>
         <v-app>
             @guest
-                @include('inc.userNavbar')
+                @include('inc.user_navbar')
             @else
                 @if(Auth::user()->is_admin)
-                    @include('inc.adminNavbar')
+                    @include('inc.admin_navbar')
                 @else
-                    @include('inc.userNavbar')
+                    @include('inc.user_navbar')
                 @endif
             @endguest
         

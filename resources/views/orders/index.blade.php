@@ -8,7 +8,7 @@
             @foreach ($orders as $order)
                 <v-expansion-panel>
                     <v-expansion-panel-header>
-                        <div>Ordem nº{{$order->id}}</div>
+                        <div>Pedido nº{{$order->id}}</div>
                         <v-spacer></v-spacer>
                         <div :class="colorStatus('{{$order->status}}')">
                             {{$order->status}}
@@ -46,12 +46,38 @@
                                 </p>
                             </div>
                             <v-spacer></v-spacer>
-                            <cancel-dialog
-                            button-text="Cancelar"
-                            action="/{{ Auth::user()->id }}/orders/{{$order->id}}"
-                            csrf-token="{{ csrf_token() }}"
-                            route-param="{{$order->id}}">
-                            </cancel-dialog>
+
+                            @if (Auth::user()->is_admin)
+                                <v-btn
+                                class="primary mx-3 my-auto"
+                                rounded
+                                >
+                                    Editar
+                                </v-btn>
+                                
+                                <v-btn
+                                class="red mx-1 my-auto"
+                                fab
+                                small
+                                >
+                                    <v-icon dark>mdi-arrow-u-left-top-bold</v-icon>
+                                </v-btn>
+
+                                <v-btn
+                                class="green mx-1 my-auto"
+                                fab
+                                small
+                                >
+                                    <v-icon dark>mdi-arrow-up-bold</v-icon>
+                                </v-btn>
+                            @else
+                                <cancel-dialog
+                                button-text="Cancelar"
+                                action="/{{ Auth::user()->id }}/orders/{{$order->id}}"
+                                csrf-token="{{ csrf_token() }}"
+                                route-param="{{$order->id}}">
+                                </cancel-dialog>
+                            @endif
                         </div>
                     </v-expansion-panel-content>
                 </v-expansion-panel>
@@ -59,7 +85,7 @@
         </v-expansion-panels>
     @else
         <div class="mx-auto d-flex align-center justify-center">
-            <p>Você não realizou nenhum pedido.</p>
+            <p>Não há pedidos.</p>
         </div>
     @endif
 </v-container>

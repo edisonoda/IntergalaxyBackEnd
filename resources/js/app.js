@@ -46,6 +46,9 @@ const app = new Vue({
             } else if(status == 'Cancelado') {
                 return 'red--text'
             }
+        },
+        goBack() {
+            window.history.back();
         }
     }
 })

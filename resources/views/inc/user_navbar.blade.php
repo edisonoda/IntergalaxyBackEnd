@@ -51,7 +51,7 @@
             </template>
             <v-list dense>
                 <v-list-item>
-                    <v-btn class="mx-auto" text color="primary" href="/profile/{{ Auth::user()->id }}/edit">Editar Dados</v-btn>
+                    <v-btn class="mx-auto" text color="primary" href="/users/{{ Auth::user()->id }}/edit">Editar Dados</v-btn>
                 </v-list-item>
 
                 <v-list-item>

@@ -26,11 +26,13 @@ Route::resource('{user}/orders', 'App\Http\Controllers\OrdersController');
 Route::resource('{user}/cart', 'App\Http\Controllers\CartController');
 
 // Profile routes
-Route::get('/profile/{user}', [App\Http\Controllers\UserController::class, 'show'])->name('profile');
-Route::get('/profile/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('profile.edit');
-Route::put('/profile/{user}/edit', [App\Http\Controllers\UserController::class, 'update'])->name('profile.update');
+Route::get('/users', [App\Http\Controllers\UserController::class, 'index'])->name('users');
+Route::get('/users/{user}/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit')->middleware('is_admin');;
+Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('user.update')->middleware('is_admin');;
 
 // Order routes
+Route::get('{user}/orders', [App\Http\Controllers\OrdersController::class, 'indexByUser'])->name('user.orders')->middleware('is_admin');
+
 //Route::get('{user}/orders', [App\Http\Controllers\OrdersController::class, 'index'])->name('orders.index');
 //Route::get('{user}/orders/create', [App\Http\Controllers\OrdersController::class, 'create'])->name('orders.create');
 //Route::get('{user}/orders/{order}', [App\Http\Controllers\OrdersController::class, 'show'])->name('orders.show');

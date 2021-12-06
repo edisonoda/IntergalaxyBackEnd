@@ -1,8 +1,8 @@
 <template>
-    <div class="d-flex flex-row">
+    <div class="d-flex flex-row align-center">
         <v-btn
         class="mx-2"
-        v-on:click.native="$emit('decrement-quantity');"
+        v-on:click="$emit('decrement-quantity');"
         v-bind:disabled="count<2"
         fab
         dark
@@ -13,7 +13,7 @@
         </v-btn>
         <v-btn
         class="mx-2"
-        v-on:click.native="$emit('increment-quantity');"
+        v-on:click="$emit('increment-quantity');"
         fab
         dark
         small
@@ -26,7 +26,7 @@
 
         <v-text-field
         v-model="count"
-        class="mx-2 col-3"
+        class="mx-2 col-3 pt-7"
         id="quantity"
         name="quantity"
         dense
@@ -55,7 +55,7 @@
         },
         mounted(){
             setTimeout(() => {
-                this.count = 1
+                this.count = this.quantity
             }, 500)
         }
     }

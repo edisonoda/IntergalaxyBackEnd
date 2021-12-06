@@ -7,6 +7,20 @@
         Produtos
     </v-btn>
 
+    <v-btn
+    class="text-decoration-none"
+    text
+    href="{{ route('orders.index', ['user', Auth::user()->id]) }}">
+            Pedidos
+    </v-btn>
+
+    <v-btn
+    class="text-decoration-none"
+    text
+    href="{{ route('users') }}">
+        Usuários
+    </v-btn>
+
     <v-spacer></v-spacer>
 
     @guest
@@ -22,6 +36,14 @@
             </v-btn>
         @endif
     @else
+    <v-btn
+    class="text-decoration-none secondary mr-2"
+    rounded
+    href="{{ route('products.create') }}">
+        <v-icon class="mr-2">mdi-plus</v-icon>
+        Novo produto
+    </v-btn>
+
         <v-menu offset-y>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn

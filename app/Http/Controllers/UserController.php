@@ -22,8 +22,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function show($id){
+    public function index(){
+        $users = User::where('is_admin', 0)->paginate(20);
         
+        return view('users.index')->with('users', $users);
     }
 
     public function edit($id){

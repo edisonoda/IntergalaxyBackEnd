@@ -23,7 +23,7 @@ class OrdersController extends Controller
     {
         if (auth()->user()->is_admin) {
             $orders = Order::orderBy('id', 'asc')->paginate(20);
-            return view('orders.admin')->with('orders', $orders);
+            return view('orders.index')->with('orders', $orders);
         }else{
             $orders = Order::where('user_id', auth()->user()->id)->paginate(20);
             return view('orders.index')->with('orders', $orders);
@@ -33,7 +33,7 @@ class OrdersController extends Controller
     public function indexByUser($user)
     {
         if (auth()->user()->is_admin) {
-            $orders = Order::where('user_id', $user);
+            $orders = Order::where('user_id', $user)->get();
             return view('orders.admin')->with('orders', $orders);
         }else{
             return redirect()->route('products.home')->with('error','Você não possui permissão para isso.');

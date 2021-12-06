@@ -2233,7 +2233,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     setTimeout(function () {
-      _this.count = 1;
+      _this.count = _this.quantity;
     }, 500);
   }
 });
@@ -2294,6 +2294,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_2__["default"]({
       } else if (status == 'Cancelado') {
         return 'red--text';
       }
+    },
+    goBack: function goBack() {
+      window.history.back();
     }
   }
 });
@@ -38547,14 +38550,14 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "d-flex flex-row" },
+    { staticClass: "d-flex flex-row align-center" },
     [
       _c(
         "v-btn",
         {
           staticClass: "mx-2",
           attrs: { disabled: _vm.count < 2, fab: "", dark: "", small: "" },
-          nativeOn: {
+          on: {
             click: function ($event) {
               return _vm.$emit("decrement-quantity")
             },
@@ -38573,7 +38576,7 @@ var render = function () {
         {
           staticClass: "mx-2",
           attrs: { fab: "", dark: "", small: "", color: "primary" },
-          nativeOn: {
+          on: {
             click: function ($event) {
               return _vm.$emit("increment-quantity")
             },
@@ -38588,7 +38591,7 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("v-text-field", {
-        staticClass: "mx-2 col-3",
+        staticClass: "mx-2 col-3 pt-7",
         attrs: {
           id: "quantity",
           name: "quantity",
