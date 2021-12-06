@@ -8,6 +8,10 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,16 +31,6 @@ class CartController extends Controller
         //echo implode('+', $products);
 
         return view('cart', ['products' => $products, 'total_price' => $totalPrice]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -63,40 +57,6 @@ class CartController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -105,6 +65,21 @@ class CartController extends Controller
     public function destroy(Request $request)
     {
         $user = User::find(auth()->user()->id);
+        $permission = false;
+
+        if(auth()->user()->is_admin){
+            $permission = true;
+        } else {
+            foreach($user->products as $product){
+                if(auth()->user()->id === $product->users){
+                    $permission = true;
+                    break;
+                }
+            }
+        }        
+
+        if(!$permission)
+            return redirect('/home')->with('error', 'Você não possui permissão para fazer isso!');
 
         $user->products()->detach($request->id);
 

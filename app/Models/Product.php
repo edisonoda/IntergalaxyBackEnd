@@ -13,10 +13,14 @@ class Product extends Model
     ];
 
     public function orders(){
-        return $this->belongsToMany(Order::class)->withTimestamps();
+        return $this->belongsToMany(Order::class)
+        ->withTimestamps()
+        ->withPivot(['product_quantity']);
     }
 
     public function users(){
-        return $this->belongsToMany(User::class)->withTimestamps();
+        return $this->belongsToMany(User::class)
+        ->withTimestamps()
+        ->withPivot(['product_quantity']);
     }
 }
