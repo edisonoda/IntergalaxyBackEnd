@@ -62,7 +62,7 @@ class CreateOrdersSeeder extends Seeder
             $totalPrice = 0;
 
             foreach ($products as $product){
-                $productQuantity = rand(0,15);
+                $productQuantity = rand(1,15);
                 $totalPrice += $product->price * $productQuantity;
                 $order->products()->attach($product->id, ['product_quantity' => $productQuantity]);
             }

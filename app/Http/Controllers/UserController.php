@@ -59,14 +59,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         $product = User::find($id);
-
         $orders = $product->orders;
+        $product->delete();
 
         foreach($orders as $order){
-            \App\Controllers\OrdersController::updateTotalPrice($order->id);
+            \App\Http\Controllers\OrdersController::updateTotalPrice($order->id);
         }
-
-        $product->delete();
 
         return redirect('/users')->with('success', 'Conta excluída com sucesso!');
     }

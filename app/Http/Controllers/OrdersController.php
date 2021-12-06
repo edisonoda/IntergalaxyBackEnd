@@ -112,11 +112,9 @@ class OrdersController extends Controller
 
     public function updateTotalPrice($id){
         $order = Order::find($id);
-        $products = [];
         $totalPrice = 0;
 
         foreach($order->products as $product){
-            array_push($products, $product);
             $totalPrice += $product->price * $product->pivot->product_quantity;
         }
 

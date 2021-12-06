@@ -122,14 +122,12 @@ class ProductsController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-
         $orders = $product->orders;
+        $product->delete();
 
         foreach($orders as $order){
-            \App\Controllers\OrdersController::updateTotalPrice($order->id);
+            \App\Http\Controllers\OrdersController::updateTotalPrice($order->id);
         }
-        
-        $product->delete();
 
         return redirect('/')->with('success', 'Produto removido com sucesso!');
     }
